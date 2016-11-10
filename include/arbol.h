@@ -7,11 +7,12 @@ class arbol
 {
     public:
         int ronda;
-        bool turno;
+        bool turno, fallo;
         char mat[3][3];
         gato*raiz, *actual;
         gato*best();
-        void jugar();
+        gato*worst();
+        void jugar(unsigned int);
         void insertar();
         void borrar();
         void mostrar();

@@ -3,8 +3,7 @@
 int main()
 {
     arbol a;
-    a.jugar();
-    a.mostrar();
+    a.jugar(4);
     a.borrar();
     if(cin.fail()){
         cin.clear();

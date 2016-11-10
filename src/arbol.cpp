@@ -2,8 +2,9 @@
 
 arbol::arbol()
 {
+    srand(time(0));
     ronda = 0;
-    turno = false;
+    turno = fallo = false;
     raiz = actual = nullptr;
     for(int i=0;i<3;i++)
         for(int j=0;j<3;j++)
@@ -30,13 +31,41 @@ gato*arbol::best(){
     return best;
 }
 
-void arbol::jugar(){
+gato*arbol::worst(){
+    gato*worst = actual = raiz;
+    while(actual){
+        if(actual->getDown()){
+            actual = actual->getDown();
+            worst = actual;
+            continue;
+        }
+        else if(actual->val < worst->val){
+            worst = actual;
+        }
+        actual = actual->getNext();
+    }
+    return worst;
+}
+
+void arbol::jugar(unsigned int n){
     int row,col;
+    gato*aux;
     do{
+        aux = fallo?worst():best();
+        if(aux){
+            aux->mostrar();
+            if(aux->termino){
+                if(!turno)
+                    cout << "La IA ha ganado" << endl;
+                else
+                    cout << "El jugador ha ganado" << endl;
+                break;
+            }
+        }
         cout << "Ronda: " << ronda << endl;
         if(turno){
+            fallo = (rand()%n==0);
             insertar();
-            best()->mostrar();
             continue;
         }
         row = col = 0;
@@ -65,7 +94,10 @@ void arbol::insertar(){
         raiz = new gato(mat);
     else if(turno){
         bool first = true;
-        actual = best();
+        if(fallo)
+            actual = worst();
+        else
+            actual = best();
         for(int i=0;i<3;i++)
             for(int j=0;j<3;j++)
                 if(mat[i][j]==' '){
@@ -82,12 +114,18 @@ void arbol::insertar(){
                         actual = actual->getNext();
                     }
                 }
-        actual = best();
+        if(fallo)
+            actual = worst();
+        else
+            actual = best();
         for(int i=0;i<3;i++)
             for(int j=0;j<3;j++)
                 mat[i][j] = actual->mat[i][j];
     }else{
-        actual = best();
+        if(fallo)
+            actual = worst();
+        else
+            actual = best();
         gato*nuevo = new gato(mat);
         nuevo->setUp(actual);
         actual->setDown(nuevo);

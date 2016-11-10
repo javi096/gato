@@ -9,6 +9,7 @@ gato::gato(char mat[3][3],int row,int col)
     this->fila = (row>2||row<0)?0:row;
     this->columna = (col>2||col<0)?0:col;
     val = 0;
+    termino = false;
     jugar();
 }
 
@@ -21,6 +22,7 @@ gato::gato(char mat[3][3])
     this->fila = 0;
     this->columna = 0;
     val = 0;
+    termino = perder();
 }
 
 gato::~gato()
@@ -60,6 +62,42 @@ void gato::setLast(gato*las){
     this->las = las;
 }
 
+bool gato::perder(){
+    int row[3] = {0}, col[3] = {0}, dia[2] = {0};
+    for(int i=0;i<3;i++){
+		for(int j=0;j<3;j++){
+			if(mat[i][j]=='X')
+				row[i]++;
+			if(row[i]==3)
+				return true;
+		}
+	}
+
+	for(int i=0;i<3;i++){
+		for(int j=0;j<3;j++){
+			if(mat[j][i]=='X')
+				col[i]++;
+			if(col[i]==3)
+				return true;
+		}
+	}
+
+    for(int i=0;i<3;i++){
+        if(mat[i][i]=='X')
+            dia[0]++;
+        if(dia[0]==3)
+            return true;
+    }
+
+    for(int i=2;i>=0;i--){
+        if(mat[2-i][i]=='X')
+            dia[1]++;
+        if(dia[1]==3)
+            return true;
+    }
+    return false;
+}
+
 void gato::jugar(){
     int esquinas = 0, row[3] = {0}, col[3] = {0}, dia[2] = {0};
     mat[0][0]==' '?esquinas++:0;
@@ -73,6 +111,7 @@ void gato::jugar(){
 				row[i]++;
 			if(row[i]==3 && fila==i){
 				val = 5;
+				termino = true;
 				return;
 			}
 		}
@@ -84,6 +123,7 @@ void gato::jugar(){
 				col[i]++;
 			if(col[i]==3 && columna==i){
 				val = 5;
+				termino = true;
 				return;
 			}
 		}
@@ -94,6 +134,7 @@ void gato::jugar(){
             dia[0]++;
         if(dia[0]==3 && fila == columna){
             val = 5;
+            termino = true;
             return;
         }
     }
@@ -103,6 +144,7 @@ void gato::jugar(){
             dia[1]++;
         if(dia[1]==3 && (fila+columna)==2 ){
             val = 5;
+            termino = true;
             return;
         }
     }
