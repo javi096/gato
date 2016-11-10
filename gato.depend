@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1478669340 source:c:\javier\c++\gato\main.cpp
+	"arbol.h"
+
+1478660175 c:\javier\c++\gato\include\gato.h
+	<iostream>
+
+1478671279 source:c:\javier\c++\gato\src\arbol.cpp
+	"arbol.h"
+
+1478644506 c:\javier\c++\gato\include\arbol.h
+	"gato.h"
+	<limits>
+
+1478660372 source:c:\javier\c++\gato\src\gato.cpp
+	"gato.h"
+
+1478639538 source:c:\javier\c++\gato\src\lista.cpp
+	"lista.h"
+
+1478637583 c:\javier\c++\gato\include\lista.h
+	"gato.h"
+
+1478639489 source:c:\javier\c++\gato\src\nodo.cpp
+	"nodo.h"
+
+1478639613 c:\javier\c++\gato\include\nodo.h
+	"lista.h"
+
