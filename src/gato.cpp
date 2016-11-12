@@ -100,6 +100,9 @@ bool gato::perder(){
 
 void gato::jugar(){
     int esquinas = 0, row[3] = {0}, col[3] = {0}, dia[2] = {0};
+
+
+
     mat[0][0]==' '?esquinas++:0;
     mat[0][2]==' '?esquinas++:0;
     mat[2][0]==' '?esquinas++:0;
@@ -150,7 +153,8 @@ void gato::jugar(){
     }
 
     for(int i=0;i<3;i++)
-         row[i] = col[i] = dia[i] = 0;
+         row[i] = col[i] = 0;
+    dia[0] = dia[1] = 0;
 
 	for(int i=0;i<3;i++){
 		for(int j=0;j<3;j++){

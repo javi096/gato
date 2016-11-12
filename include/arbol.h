@@ -12,6 +12,7 @@ class arbol
         gato*raiz, *actual;
         gato*best();
         gato*worst();
+        void burbuja();
         void jugar(unsigned int);
         void insertar();
         void borrar();

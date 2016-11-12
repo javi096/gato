@@ -16,6 +16,29 @@ arbol::~arbol()
 
 }
 
+gato*arbol::worst(){
+    gato*ultimo,*worst;
+    ultimo = worst = actual = raiz;
+    while(actual){
+        if(actual->getDown()){
+            actual = actual->getDown();
+            worst = ultimo = actual;
+            continue;
+        }
+        else if(actual->val > worst->val)
+            worst = actual;
+        actual = actual->getNext();
+        if(actual)
+            ultimo = actual;
+    }
+    while(ultimo){
+        if(ultimo<worst)
+            return ultimo;
+        ultimo = ultimo->getLast();
+    }
+    return worst;
+}
+
 gato*arbol::best(){
     gato*best = actual = raiz;
     while(actual){
@@ -29,22 +52,6 @@ gato*arbol::best(){
         actual = actual->getNext();
     }
     return best;
-}
-
-gato*arbol::worst(){
-    gato*worst = actual = raiz;
-    while(actual){
-        if(actual->getDown()){
-            actual = actual->getDown();
-            worst = actual;
-            continue;
-        }
-        else if(actual->val < worst->val){
-            worst = actual;
-        }
-        actual = actual->getNext();
-    }
-    return worst;
 }
 
 void arbol::jugar(unsigned int n){
@@ -65,6 +72,8 @@ void arbol::jugar(unsigned int n){
         cout << "Ronda: " << ronda << endl;
         if(turno){
             fallo = (rand()%n==0);
+            //if(fallo)
+            //    cout << "fallo" << endl;
             insertar();
             continue;
         }

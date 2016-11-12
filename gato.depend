@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1478768482 source:c:\javier\c++\gato\main.cpp
+1478908477 source:c:\javier\c++\gato\main.cpp
 	"arbol.h"
 
 1478765996 c:\javier\c++\gato\include\gato.h
@@ -7,14 +7,14 @@
 	<cstdlib>
 	<ctime>
 
-1478767652 source:c:\javier\c++\gato\src\arbol.cpp
+1478912183 source:c:\javier\c++\gato\src\arbol.cpp
 	"arbol.h"
 
-1478767629 c:\javier\c++\gato\include\arbol.h
+1478897983 c:\javier\c++\gato\include\arbol.h
 	"gato.h"
 	<limits>
 
-1478765333 source:c:\javier\c++\gato\src\gato.cpp
+1478904871 source:c:\javier\c++\gato\src\gato.cpp
 	"gato.h"
 
 1478639538 source:c:\javier\c++\gato\src\lista.cpp
